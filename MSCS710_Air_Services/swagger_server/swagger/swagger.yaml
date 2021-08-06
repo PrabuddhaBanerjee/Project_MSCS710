@@ -1,0 +1,341 @@
+openapi: 3.0.0
+info:
+  title: AIRservices
+  description: A REST API interface for airline cancellation predictions
+  contact:
+    email: christian.sumano1@marist.edu
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/csumano/AIRservices/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /register:
+    post:
+      tags:
+      - User Information
+      summary: Create user
+      description: Register an account to use the other features.
+      operationId: create_user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+                properties:
+                  email:
+                    type: string
+                  username:
+                    type: string
+                  password:
+                    type: string
+            example:
+              email: email@email.com
+              username: username1
+              password: password1
+      responses:
+        "200":
+          description: Successful operation, new account registered 
+          content: 
+            text/plain:
+              schema:
+                type: string
+                example: Successfully registered
+        "400":
+          description: Error, bad syntax
+      x-openapi-router-controller: swagger_server.controllers.register_controller
+  /login:
+    post:
+      tags:
+      - User Information
+      summary: Login user
+      description: Register an account to use other features.
+      operationId: login_user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+                properties:
+                  email:
+                    type: string
+                  password:
+                    type: string
+            example:
+              email: email@email.com
+              password: password1
+      responses:
+        "200":
+          description: Successful
+        "400":
+          description: Error, bad syntax
+      x-openapi-router-controller: swagger_server.controllers.register_controller      
+  /bestairlines:
+    post:
+      tags:
+      - Airline Information
+      summary: Best airports
+      description: Get the best airports and their reliability for a given date 
+      operationId: best_airlines
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+            example:
+              year: 2017
+              month: 9
+              day: 9
+      responses:
+        "200":
+          description: Successful operation
+          content: 
+            application/json:
+              schema:
+                type: object
+                example:
+                  origin:
+                    0: ATL
+                    1: JFK
+                    2: BOS
+                  reliability:
+                    0: 97%
+                    1: 95%
+                    2: 93%
+        "400":
+          description: Error, bad syntax
+        "401":
+          description: Unathorized, please login or check login credentials 
+      # security:
+      # - basicAuth: []
+      x-openapi-router-controller: swagger_server.controllers.airline_information_controller
+  /weathertoflights:
+    post:
+      tags:
+      - Airline and Weather Information
+      summary: Weather comapred to flights
+      description: Reports back weather type and cancellations beacause of that weather
+      operationId: weather_airline
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_1'
+            example: 
+              year: 2017
+              month: 9
+              day: 9
+              city: Los Angeles
+      responses:
+        "200":
+          description: Successful
+        "400":
+          description: Error, bad syntax
+        "401": 
+          description: Unathorized, please login or check login credentials
+      # security:
+      # - basicAuth: []
+      x-openapi-router-controller: swagger_server.controllers.airline_information_controller
+  /flightpredictor:
+    post:
+      tags:
+      - Airline Information
+      summary: Flight predictor
+      description: Get predictions if a flight will be cancelled
+      operationId: flight_predictor
+      parameters:
+      - name: Model
+        in: query
+        description: Choose a type of model
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - Supervised
+          - Unsupervised
+          - Ensembled            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_2'
+            example: 
+              origin: JFK
+              destination: ATL
+              year: 2020
+              month: 12
+              day: 20
+      responses:
+        "200":
+          description: Successfull
+        "400":
+          description: Error, bad syntax
+        "401":
+          description: Unathorized, please login or check login credentials
+#      security:
+#      - basicAuth: []
+      x-openapi-router-controller: swagger_server.controllers.airline_information_controller
+  /flights:
+    get:
+      tags:
+      - Airline Information
+      summary: Gather flight data
+      operationId: gather_flights
+      parameters:
+      - name: Year
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 2013
+      - name: Month
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 4
+      - name: Day
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 2
+      - name: Origin
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: Los Angeles, CA
+      - name: Destination
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: Chicago, IL
+      responses:
+        "200":
+          description: Successfull
+        "400":
+          description: Error, bad syntax
+        "401":
+          description: Unathorized, please login or check login credentials
+      x-openapi-router-controller: swagger_server.controllers.airline_information_controller
+  /flightgraphs:
+    get:
+      tags:
+      - Airline and Weather Information
+      summary: Gather graphs
+      description: Get a graph based on airport city and date
+      operationId: flight_graphs
+      parameters:
+        - name: Graph
+          in: query
+          description: Status values that need to be considered for filter
+          required: true
+          schema:
+            type: string
+            enum:
+              - Cancellations
+              - Weather
+        - name: Year
+          in: query
+          description: If you dont choose a year it will default to 2013-2017
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Succesfull, graph retrieved
+          content:
+            text/html:
+              schema:
+                type: string
+                x-content-type: text/html
+      x-openapi-router-controller: swagger_server.controllers.airline_information_controller
+components:
+  schemas:
+    airlineResults:
+      type: object
+      properties:
+        Airlines:
+          type: array
+          example:
+          - airline: LAX
+            city: Los Angeles
+          - airline: EWR
+            city: Newark
+          - airline: BOS
+            city: East Boston
+          items:
+            $ref: '#/components/schemas/airlineResults_Airlines'
+      example:
+        Airlines:
+        - airline: LAX
+          city: Los Angeles
+        - airline: EWR
+          city: Newark
+        - airline: BOS
+          city: East Boston
+    body:
+      type: object
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
+    body_1:
+      type: object
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day: 
+          type: integer
+        city:
+          type: string
+    body_2:
+      type: object
+      properties:
+        origin:
+          type: string
+        destination:
+          type: string
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
+    airlineResults_Airlines:
+      type: object
+      properties:
+        airline:
+          type: string
+        city:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      x-basicInfoFunc: swagger_server.controllers.authorization_controller.check_basicAuth

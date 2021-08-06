@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  <title>AIR SERVICES</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/main1.css">
+  <style>
+   body{ background-color: #A61010;
+         background-image: url('images/airport.jpg');
+         background-position: center;
+         background-size: cover;
+         background-repeat: no-repeat;
+         min-height: 100%;
+   }
+   h2{ color: white;
+       background-color: #590C0C;
+       font-family: "Times New Roman", Times, serif;
+  }
+  .panel{
+   margin-top: 15%;
+   margin-right: 30%;
+   margin-left: 40%;
+  }
+  .panel-danger > .panel-heading{
+    padding-left: 70px;
+    background-color: #590C0C;
+    padding-left:10px;
+  }
+  .panel-danger > .panel-body{
+    text-indent: 50px;
+    padding-left: 2000px;
+  }
+  select{
+     font-size: large;
+   }
+  button{ font: Georgia;
+          font-weight: bold;
+  }
+  footer {
+   text-align: center;
+   padding: 1%;
+   background-color: #602090;
+   color: #602090;
+   bottom:-100px;
+  }
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+.wrapper{
+  min-height: 100%;
+
+/* Equal to height of footer */
+/* But also accounting for potential margin-bottom of last child */
+margin-bottom: -50px;
+}
+.push {
+  height: 50px;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+ </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  </head>
+<body>
+
+<div class="wrapper">
+  <div>
+   <div class="wrap-contact2">
+     <ul class="nav nav-tabs">
+     <li><a data-toggle="tab" href="#fp">Flight Predictor</a></li>
+     <li><a data-toggle="tab" href="#ba">Best Airport Available</a></li>
+     <li><a data-toggle="tab" href="#fg">Flight Graph</a></li>
+   </ul>
+    <div class="tab-content">
+     <div id="fp" class="tab-pane fade in active">
+     <form class="contact2-form validate-form">
+       <span class="contact2-form-title">
+        Details
+       </span>
+             <div class="form-group row">
+              <div class="col-sm-10 text-center">
+              <label for="start">Departure date:</label>
+              <input type="date" id="start" name="trip-start"
+                   value="2018-07-22"
+                   min="2000-01-01" max="2030-12-31">
+              </div>
+
+            <div class="form-group row text-center">
+              <div class="col-sm-10 ">Departure Airport</div>
+                <div class = "col-sm-10">
+                  <select id="getDepart" class="custom-select form-control-sm">
+                    <option>--Choose an Option--</option>
+                    <option value="ABE">Lehigh Valley International Airport,Allentown</option>
+                    <option value="ABI">Abilene Regional Airport,Abilene</option>
+                    <option value="ABQ">Albuquerque International Sunport,Albuquerque</option>
+                    <option value="ABR">Aberdeen Regional Airport,Aberdeen</option>
+                    <option value="ABY">Southwest Georgia Regional Airport,Albany</option>
+                    <option value="ACK">Nantucket Memorial Airport,Nantucket</option>
+                    <option value="ACT">Waco Regional Airport,Waco</option>
+                    <option value="ACV">Arcata Airport,Arcata/Eureka</option>
+                    <option value="ACY">Atlantic City International Airport,Atlantic City</option>
+                    <option value="ADK">Adak Airport,Adak</option>
+                    <option value="ADQ">Kodiak Airport,Kodiak</option>
+                    <option value="AEX">Alexandria International Airport,Alexandria</option>
+                    <option value="AGS">Augusta Regional Airport (Bush Field),Augusta</option>
+                    <option value="AKN">King Salmon Airport,King Salmon</option>
+                    <option value="ALB">Albany International Airport,Albany</option>
+                    <option value="ALO">Waterloo Regional Airport,Waterloo</option>
+                    <option value="AMA">Rick Husband Amarillo International Airport,Amarillo</option>
+                    <option value="ANC">Ted Stevens Anchorage International Airport,Anchorage</option>
+                    <option value="APN">Alpena County Regional Airport,Alpena</option>
+                    <option value="ASE">Aspen-Pitkin County Airport,Aspen</option>
+                    <option value="ATL">Hartsfield-Jackson Atlanta International Airport,Atlanta</option>
+                    <option value="ATW">Appleton International Airport,Appleton</option>
+                    <option value="AUS">Austin-Bergstrom International Airport,Austin</option>
+                    <option value="AVL">Asheville Regional Airport,Asheville</option>
+                    <option value="AVP">Wilkes-Barre/Scranton International Airport,Wilkes-Barre/Scranton</option>
+                    <option value="AZO">Kalamazoo/Battle Creek International Airport,Kalamazoo</option>
+                    <option value="BDL">Bradley International Airport,Windsor Locks</option>
+                    <option value="BET">Bethel Airport,Bethel</option>
+                    <option value="BFL">Meadows Field,Bakersfield</option>
+                    <option value="BGM">Greater Binghamton Airport,Binghamton</option>
+                    <option value="BGR">Bangor International Airport,Bangor</option>
+                    <option value="BHM">Birmingham-Shuttlesworth International Airport,Birmingham</option>
+                    <option value="BIL">Billings Logan International Airport,Billings</option>
+                    <option value="BIS">Bismarck Municipal Airport,Bismarck</option>
+                    <option value="BJI">Bemidji Regional Airport,Bemidji</option>
+                    <option value="BLI">Bellingham International Airport,Bellingham</option>
+                    <option value="BMI">Central Illinois Regional Airport at Bloomington-Normal,Bloomington</option>
+                    <option value="BNA">Nashville International Airport,Nashville</option>
+                    <option value="BOI">Boise Airport (Boise Air Terminal),Boise</option>
+                    <option value="BOS">Gen. Edward Lawrence Logan International Airport,Boston</option>
+                    <option value="BPT">Jack Brooks Regional Airport (Southeast Texas Regional),Beaumont/Port Arthur</option>
+                    <option value="BQK">Brunswick Golden Isles Airport,Brunswick</option>
+                    <option value="BQN">Rafael Hernández Airport,Aguadilla</option>
+                    <option value="BRD">Brainerd Lakes Regional Airport,Brainerd</option>
+                    <option value="BRO">Brownsville/South Padre Island International Airport,Brownsville</option>
+                    <option value="BRW">Wiley Post-Will Rogers Memorial Airport,Barrow</option>
+                    <option value="BTM">Bert Mooney Airport,Butte</option>
+                    <option value="BTR">Baton Rouge Metropolitan Airport,Baton Rouge</option>
+                    <option value="BTV">Burlington International Airport,Burlington</option>
+                    <option value="BUF">Buffalo Niagara International Airport,Buffalo</option>
+                    <option value="BUR">Bob Hope Airport (Hollywood Burbank Airport),Burbank</option>
+                    <option value="BWI">Baltimore-Washington International Airport,Baltimore</option>
+                    <option value="BZN">Bozeman Yellowstone International Airport (Gallatin Field Airport),Bozeman</option>
+                    <option value="CAE">Columbia Metropolitan Airport,Columbia</option>
+                    <option value="CAK">Akron-Canton Regional Airport,Akron</option>
+                    <option value="CDC">Cedar City Regional Airport,Cedar City</option>
+                    <option value="CDV">Merle K. (Mudhole) Smith Airport,Cordova</option>
+                    <option value="CEC">Del Norte County Airport (Jack McNamara Field),Crescent City</option>
+                    <option value="CHA">Chattanooga Metropolitan Airport (Lovell Field),Chattanooga</option>
+                    <option value="CHO">Charlottesville-Albemarle Airport,Charlottesville</option>
+                    <option value="CHS">Charleston International Airport/Charleston AFB,Charleston</option>
+                    <option value="CID">The Eastern Iowa Airport,Cedar Rapids</option>
+                    <option value="CIU">Chippewa County International Airport,Sault Ste. Marie</option>
+                    <option value="CLD">McClellan-Palomar Airport,San Diego</option>
+                    <option value="CLE">Cleveland Hopkins International Airport,Cleveland</option>
+                    <option value="CLL">Easterwood Airport,College Station</option>
+                    <option value="CLT">Charlotte Douglas International Airport,Charlotte</option>
+                    <option value="CMH">Port Columbus International Airport,Columbus</option>
+                    <option value="CMI">University of Illinois - Willard Airport,Champaign/Urbana</option>
+                    <option value="CMX">Houghton County Memorial Airport,Hancock</option>
+                    <option value="CNY">Canyonlands Field,Moab</option>
+                    <option value="COD">Yellowstone Regional Airport,Cody</option>
+                    <option value="COS">City of Colorado Springs Municipal Airport,Colorado Springs</option>
+                    <option value="COU">Columbia Regional Airport,Columbia</option>
+                    <option value="CPR">Natrona County International Airport,Casper</option>
+                    <option value="CRP">Corpus Christi International Airport,Corpus Christi</option>
+                    <option value="CRW">Yeager Airport,Charleston</option>
+                    <option value="CSG">Columbus Metropolitan Airport,Columbus</option>
+                    <option value="CVG">Cincinnati/Northern Kentucky International Airport,Covington</option>
+                    <option value="CWA">Central Wisconsin Airport,Mosinee</option>
+                    <option value="DAB">Daytona Beach International Airport,Daytona Beach</option>
+                    <option value="DAL">Dallas Love Field,Dallas</option>
+                    <option value="DAY">James M. Cox Dayton International Airport,Dayton</option>
+                    <option value="DBQ">Dubuque Regional Airport,Dubuque</option>
+                    <option value="DCA">Ronald Reagan Washington National Airport,Arlington</option>
+                    <option value="DEN">Denver International Airport,Denver</option>
+                    <option value="DFW">Dallas/Fort Worth International Airport,Dallas-Fort Worth</option>
+                    <option value="DHN">Dothan Regional Airport,Dothan</option>
+                    <option value="DIK">Dickinson Theodore Roosevelt Regional Airport,Dickinson</option>
+                    <option value="DLG">Dillingham Airport,Dillingham</option>
+                    <option value="DLH">Duluth International Airport,Duluth</option>
+                    <option value="DRO">Durango-La Plata County Airport,Durango</option>
+                    <option value="DSM">Des Moines International Airport,Des Moines</option>
+                    <option value="DTW">Detroit Metropolitan Airport,Detroit</option>
+                    <option value="DVL">Devils Lake Regional Airport,Devils Lake</option>
+                    <option value="EAU">Chippewa Valley Regional Airport,Eau Claire</option>
+                    <option value="ECP">Northwest Florida Beaches International Airport,Panama City</option>
+                    <option value="EGE">Eagle County Regional Airport,Eagle</option>
+                    <option value="EKO">Elko Regional Airport,Elko</option>
+                    <option value="ELM">Elmira/Corning Regional Airport,Elmira</option>
+                    <option value="ELP">El Paso International Airport,El Paso</option>
+                    <option value="ERI">Erie International Airport,Erie</option>
+                    <option value="ESC">Delta County Airport,Escanaba</option>
+                    <option value="EUG">Eugene Airport (Mahlon Sweet Field),Eugene</option>
+                    <option value="EVV">Evansville Regional Airport,Evansville</option>
+                    <option value="EWN">Coastal Carolina Regional Airport (Craven County Regional),New Bern</option>
+                    <option value="EWR">Newark Liberty International Airport,Newark</option>
+                    <option value="EYW">Key West International Airport,Key West</option>
+                    <option value="FAI">Fairbanks International Airport,Fairbanks</option>
+                    <option value="FAR">Hector International Airport,Fargo</option>
+                    <option value="FAT">Fresno Yosemite International Airport,Fresno</option>
+                    <option value="FAY">Fayetteville Regional Airport,Fayetteville</option>
+                    <option value="FCA">Glacier Park International Airport,Kalispell</option>
+                    <option value="FLG">Flagstaff Pulliam Airport,Flagstaff</option>
+                    <option value="FLL">Fort Lauderdale-Hollywood International Airport,Ft. Lauderdale</option>
+                    <option value="FNT">Bishop International Airport,Flint</option>
+                    <option value="FSD">Sioux Falls Regional Airport,Sioux Falls</option>
+                    <option value="FSM">Fort Smith Regional Airport,Fort Smith</option>
+                    <option value="FWA">Fort Wayne International Airport,Fort Wayne</option>
+                    <option value="GCC">Gillette-Campbell County Airport,Gillette</option>
+                    <option value="GCK">Garden City Regional Airport,Garden City</option>
+                    <option value="GEG">Spokane International Airport,Spokane</option>
+                    <option value="GFK">Grand Forks International Airport,Grand Forks</option>
+                    <option value="GGG">East Texas Regional Airport,Longview</option>
+                    <option value="GJT">Grand Junction Regional Airport (Walker Field),Grand Junction</option>
+                    <option value="GNV">Gainesville Regional Airport,Gainesville</option>
+                    <option value="GPT">Gulfport-Biloxi International Airport,Gulfport-Biloxi</option>
+                    <option value="GRB">Green Bay-Austin Straubel International Airport,Green Bay</option>
+                    <option value="GRI">Central Nebraska Regional Airport,Grand Island</option>
+                    <option value="GRK">Killeen-Fort Hood Regional Airport,Killeen</option>
+                    <option value="GRR">Gerald R. Ford International Airport,Grand Rapids</option>
+                    <option value="GSO">Piedmont Triad International Airport,Greensboro</option>
+                    <option value="GSP">Greenville-Spartanburg International Airport,Greer</option>
+                    <option value="GST">Gustavus Airport,Gustavus</option>
+                    <option value="GTF">Great Falls International Airport,Great Falls</option>
+                    <option value="GTR">Golden Triangle Regional Airport,Columbus-Starkville-West Point</option>
+                    <option value="GUC">Gunnison-Crested Butte Regional Airport,Gunnison</option>
+                    <option value="GUM">Guam International Airport,Agana</option>
+                    <option value="HDN">Yampa Valley Airport (Yampa Valley Regional),Hayden</option>
+                    <option value="HIB">Range Regional Airport (Chisholm-Hibbing Airport),Hibbing</option>
+                    <option value="HLN">Helena Regional Airport,Helena</option>
+                    <option value="HNL">Honolulu International Airport,Honolulu</option>
+                    <option value="HOB">Lea County Regional Airport,Hobbs</option>
+                    <option value="HOU">William P. Hobby Airport,Houston</option>
+                    <option value="HPN">Westchester County Airport,White Plains</option>
+                    <option value="HRL">Valley International Airport,Harlingen</option>
+                    <option value="HSV">Huntsville International Airport,Huntsville</option>
+                    <option value="HYA">Barnstable Municipal Airport,Hyannis</option>
+                    <option value="HYS">Hays Regional Airport,Hays</option>
+                    <option value="IAD">Washington Dulles International Airport,Chantilly</option>
+                    <option value="IAG">Niagara Falls International Airport,Niagara Falls</option>
+                    <option value="IAH">George Bush Intercontinental Airport,Houston</option>
+                    <option value="ICT">Wichita Dwight D. Eisenhower National Airport (Wichita Mid-Continent Airport),Wichita</option>
+                    <option value="IDA">Idaho Falls Regional Airport,Idaho Falls</option>
+                    <option value="ILG">Wilmington Airport,Wilmington</option>
+                    <option value="ILM">Wilmington International Airport,Wilmington</option>
+                    <option value="IMT">Ford Airport,Iron Mountain/Kingsford</option>
+                    <option value="IND">Indianapolis International Airport,Indianapolis</option>
+                    <option value="INL">Falls International Airport,International Falls</option>
+                    <option value="ISN">Sloulin Field International Airport,Williston</option>
+                    <option value="ISP">Long Island MacArthur Airport,Islip</option>
+                    <option value="ITH">Ithaca Tompkins Regional Airport,Ithaca</option>
+                    <option value="ITO">Hilo International Airport,Hilo</option>
+                    <option value="JAC">Jackson Hole Airport,Jackson</option>
+                    <option value="JAN">Jackson-Evers International Airport,Jackson</option>
+                    <option value="JAX">Jacksonville International Airport,Jacksonville</option>
+                    <option value="JFK">John F. Kennedy International Airport (New York International Airport),New York</option>
+                    <option value="JLN">Joplin Regional Airport,Joplin</option>
+                    <option value="JMS">Jamestown Regional Airport,Jamestown</option>
+                    <option value="JNU">Juneau International Airport,Juneau</option>
+                    <option value="KOA">Kona International Airport at Keahole,Kailua/Kona</option>
+                    <option value="KTN">Ketchikan International Airport,Ketchikan</option>
+                    <option value="LAN">Capital Region International Airport ( Lansing Capital City),Lansing</option>
+                    <option value="LAR">Laramie Regional Airport,Laramie</option>
+                    <option value="LAS">McCarran International Airport,Las Vegas</option>
+                    <option value="LAW">Lawton-Fort Sill Regional Airport,Lawton</option>
+                    <option value="LAX">Los Angeles International Airport,Los Angeles</option>
+                    <option value="LBB">Lubbock Preston Smith International Airport,Lubbock</option>
+                    <option value="LBE">Arnold Palmer Regional Airport,Latrobe</option>
+                    <option value="LCH">Lake Charles Regional Airport,Lake Charles</option>
+                    <option value="LEX">Blue Grass Airport,Lexington</option>
+                    <option value="LFT">Lafayette Regional Airport,Lafayette</option>
+                    <option value="LGA">LaGuardia Airport (Marine Air Terminal),New York</option>
+                    <option value="LGB">Long Beach Airport (Daugherty Field),Long Beach</option>
+                    <option value="LIH">Lihue Airport,Lihue</option>
+                    <option value="LIT">Bill and Hillary Clinton National Airport (Adams Field),Little Rock</option>
+                    <option value="LNK">Lincoln Airport (Lincoln Municipal),Lincoln</option>
+                    <option value="LRD">Laredo International Airport,Laredo</option>
+                    <option value="LSE">La Crosse Regional Airport,La Crosse</option>
+                    <option value="LWS">Lewiston-Nez Perce County Airport,Lewiston</option>
+                    <option value="MAF">Midland International Airport,Midland</option>
+                    <option value="MBS">MBS International Airport,Saginaw</option>
+                    <option value="MCI">Kansas City International Airport,Kansas City</option>
+                    <option value="MCO">Orlando International Airport,Orlando</option>
+                    <option value="MDT">Harrisburg International Airport,Harrisburg</option>
+                    <option value="MDW">Chicago Midway International Airport,Chicago</option>
+                    <option value="MEI">Meridian Regional Airport,Meridian</option>
+                    <option value="MEM">Memphis International Airport,Memphis</option>
+                    <option value="MFE">McAllen-Miller International Airport (McAllen Miller International),McAllen</option>
+                    <option value="MFR">Rogue Valley International Airport,Medford</option>
+                    <option value="MGM">Montgomery Regional Airport,Montgomery</option>
+                    <option value="MHK">Manhattan Regional Airport,Manhattan</option>
+                    <option value="MHT">Manchester-Boston Regional Airport,Manchester</option>
+                    <option value="MIA">Miami International Airport,Miami</option>
+                    <option value="MKE">General Mitchell International Airport,Milwaukee</option>
+                    <option value="MKG">Muskegon County Airport,Muskegon</option>
+                    <option value="MLB">Melbourne International Airport,Melbourne</option>
+                    <option value="MLI">Quad City International Airport,Moline</option>
+                    <option value="MLU">Monroe Regional Airport,Monroe</option>
+                    <option value="MMH">Mammoth Yosemite Airport,Mammoth Lakes</option>
+                    <option value="MOB">Mobile Regional Airport,Mobile</option>
+                    <option value="MOT">Minot International Airport,Minot</option>
+                    <option value="MQT">Sawyer International Airport,Marquette</option>
+                    <option value="MRY">Monterey Regional Airport (Monterey Peninsula Airport),Monterey</option>
+                    <option value="MSN">Dane County Regional Airport,Madison</option>
+                    <option value="MSO">Missoula International Airport,Missoula</option>
+                    <option value="MSP">Minneapolis-Saint Paul International Airport,Minneapolis</option>
+                    <option value="MSY">Louis Armstrong New Orleans International Airport,New Orleans</option>
+                    <option value="MTJ">Montrose Regional Airport,Montrose</option>
+                    <option value="MVY">Martha's Vineyard Airport,Marthas Vineyard</option>
+                    <option value="MYR">Myrtle Beach International Airport,Myrtle Beach</option>
+                    <option value="OAJ">Albert J. Ellis Airport,Jacksonville</option>
+                    <option value="OAK">Oakland International Airport,Oakland</option>
+                    <option value="OGG">Kahului Airport,Kahului</option>
+                    <option value="OKC">Will Rogers World Airport,Oklahoma City</option>
+                    <option value="OMA">Eppley Airfield,Omaha</option>
+                    <option value="OME">Nome Airport,Nome</option>
+                    <option value="ONT">Ontario International Airport,Ontario</option>
+                    <option value="ORD">Chicago O'Hare International Airport,Chicago</option>
+                    <option value="ORF">Norfolk International Airport,Norfolk</option>
+                    <option value="ORH">Worcester Regional Airport,Worcester</option>
+                    <option value="OTH">Southwest Oregon Regional Airport (North Bend Municipal),North Bend</option>
+                    <option value="OTZ">Ralph Wien Memorial Airport,Kotzebue</option>
+                    <option value="PAH">Barkley Regional Airport,Paducah</option>
+                    <option value="PBG">Plattsburgh International Airport,Plattsburgh</option>
+                    <option value="PBI">Palm Beach International Airport,West Palm Beach</option>
+                    <option value="PDX">Portland International Airport,Portland</option>
+                    <option value="PHF">Newport News/Williamsburg International Airport,Newport News</option>
+                    <option value="PHL">Philadelphia International Airport,Philadelphia</option>
+                    <option value="PHX">Phoenix Sky Harbor International Airport,Phoenix</option>
+                    <option value="PIA">General Wayne A. Downing Peoria International Airport,Peoria</option>
+                    <option value="PIB">Hattiesburg-Laurel Regional Airport,Hattiesburg-Laurel</option>
+                    <option value="PIH">Pocatello Regional Airport,Pocatello</option>
+                    <option value="PIT">Pittsburgh International Airport,Pittsburgh</option>
+                    <option value="PLN">Pellston Regional Airport of Emmet County,Pellston</option>
+                    <option value="PNS">Pensacola International Airport (Pensacola Gulf Coast Regional Airport),Pensacola</option>
+                    <option value="PPG">Pago Pago International Airport (Tafuna Airport),Pago Pago</option>
+                    <option value="PSC">Tri-Cities Airport,Pasco</option>
+                    <option value="PSE">Mercedita Airport,Ponce</option>
+                    <option value="PSG">Petersburg James A. Johnson Airport,Petersburg</option>
+                    <option value="PSP">Palm Springs International Airport,Palm Springs</option>
+                    <option value="PUB">Pueblo Memorial Airport,Pueblo</option>
+                    <option value="PVD">Theodore Francis Green State Airport,Providence</option>
+                    <option value="PWM">Portland International Jetport,Portland</option>
+                    <option value="RAP">Rapid City Regional Airport,Rapid City</option>
+                    <option value="RDD">Redding Municipal Airport,Redding</option>
+                    <option value="RDM">Redmond Municipal Airport (Roberts Field),Redmond</option>
+                    <option value="RDU">Raleigh-Durham International Airport,Raleigh</option>
+                    <option value="RHI">Rhinelander-Oneida County Airport,Rhinelander</option>
+                    <option value="RIC">Richmond International Airport,Richmond</option>
+                    <option value="RKS">Rock Springs-Sweetwater County Airport,Rock Springs</option>
+                    <option value="RNO">Reno/Tahoe International Airport,Reno</option>
+                    <option value="ROA">Roanoke Regional Airport (Woodrum Field),Roanoke</option>
+                    <option value="ROC">Greater Rochester International Airport,Rochester</option>
+                    <option value="ROW">Roswell International Air Center,Roswell</option>
+                    <option value="RST">Rochester International Airport,Rochester</option>
+                    <option value="RSW">Southwest Florida International Airport,Ft. Myers</option>
+                    <option value="SAF">Santa Fe Municipal Airport,Santa Fe</option>
+                    <option value="SAN">San Diego International Airport (Lindbergh Field),San Diego</option>
+                    <option value="SAT">San Antonio International Airport,San Antonio</option>
+                    <option value="SAV">Savannah/Hilton Head International Airport,Savannah</option>
+                    <option value="SBA">Santa Barbara Municipal Airport (Santa Barbara Airport),Santa Barbara</option>
+                    <option value="SBN">South Bend International Airport (South Bend Regional),South Bend</option>
+                    <option value="SBP">San Luis Obispo County Regional Airport (McChesney Field),San Luis Obispo</option>
+                    <option value="SCC">Deadhorse Airport (Prudhoe Bay Airport),Deadhorse</option>
+                    <option value="SCE">University Park Airport,State College</option>
+                    <option value="SDF">Louisville International Airport (Standiford Field),Louisville</option>
+                    <option value="SEA">Seattle-Tacoma International Airport,Seattle</option>
+                    <option value="SFO">San Francisco International Airport,San Francisco</option>
+                    <option value="SGF">Springfield-Branson National Airport,Springfield</option>
+                    <option value="SGU">St. George Regional Airport,St George</option>
+                    <option value="SHV">Shreveport Regional Airport,Shreveport</option>
+                    <option value="SIT">Sitka Rocky Gutierrez Airport,Sitka</option>
+                    <option value="SJC">Norman Y. Mineta San José International Airport,San Jose</option>
+                    <option value="SJT">San Angelo Regional Airport (Mathis Field),San Angelo</option>
+                    <option value="SJU">Luis Muñoz Marín International Airport,San Juan</option>
+                    <option value="SLC">Salt Lake City International Airport,Salt Lake City</option>
+                    <option value="SMF">Sacramento International Airport,Sacramento</option>
+                    <option value="SMX">Santa Maria Public Airport (Capt G. Allan Hancock Field),Santa Maria</option>
+                    <option value="SNA">John Wayne Airport (Orange County Airport),Santa Ana</option>
+                    <option value="SPI">Abraham Lincoln Capital Airport,Springfield</option>
+                    <option value="SPS">Wichita Falls Municipal Airport/Sheppard AFB,Wichita Falls</option>
+                    <option value="SRQ">Sarasota-Bradenton International Airport,Sarasota</option>
+                    <option value="STC">St. Cloud Regional Airport,St Cloud</option>
+                    <option value="STL">St. Louis International Airport at Lambert Field,St Louis</option>
+                    <option value="STT">Cyril E. King Airport,Charlotte Amalie</option>
+                    <option value="STX">Henry E. Rohlsen Airport,Christiansted</option>
+                    <option value="SUN">Friedman Memorial Airport,Hailey</option>
+                    <option value="SUX">Sioux Gateway Airport,Sioux City</option>
+                    <option value="SWF">Stewart International Airport,Newburgh</option>
+                    <option value="SYR">Syracuse Hancock International Airport,Syracuse</option>
+                    <option value="TLH">Tallahassee International Airport,Tallahassee</option>
+                    <option value="TOL">Toledo Express Airport,Toledo</option>
+                    <option value="TPA">Tampa International Airport,Tampa</option>
+                    <option value="TRI">Tri-Cities Regional Airport,Bristol</option>
+                    <option value="TTN">Trenton Mercer Airport,Trenton</option>
+                    <option value="TUL">Tulsa International Airport,Tulsa</option>
+                    <option value="TUS">Tucson International Airport,Tucson</option>
+                    <option value="TVC">Cherry Capital Airport,Traverse City</option>
+                    <option value="TWF">Magic Valley Regional Airport (Joslin Field),Twin Falls</option>
+                    <option value="TXK">Texarkana Regional Airport (Webb Field),Texarkana</option>
+                    <option value="TYR">Tyler Pounds Regional Airport,Tyler</option>
+                    <option value="TYS">McGhee Tyson Airport,Knoxville</option>
+                    <option value="UST">Northeast Florida Regional Airport (St. Augustine Airport),St. Augustine</option>
+                    <option value="VEL">Valdez Airport,Vernal</option>
+                    <option value="VLD">Valdosta Regional Airport,Valdosta</option>
+                    <option value="VPS">Destin-Fort Walton Beach Airport/Eglin AFB,Valparaiso</option>
+                    <option value="WRG">Wrangell Airport,Wrangell</option>
+                    <option value="WYS">Westerly State Airport,West Yellowstone</option>
+                    <option value="XNA">Northwest Arkansas Regional Airport,Fayetteville/Springdale/Rogers</option>
+                    <option value="YAK">Yakutat Airport,Yakutat</option>
+                    <option value="YUM">Yuma International Airport,Yuma</option>
+                  </select>
+                </div>
+               </div>
+             <div class="form-group row text-center">
+               <div class="col-sm-10">Arrival airport</div>
+                <div class = "col-sm-10">
+                  <select id="getArrive" class="custom-select form-control-sm">
+                    <option>--Choose an Option--</option>
+                      <option value="ABE">Lehigh Valley International Airport,Allentown</option>
+                      <option value="ABI">Abilene Regional Airport,Abilene</option>
+                      <option value="ABQ">Albuquerque International Sunport,Albuquerque</option>
+                      <option value="ABR">Aberdeen Regional Airport,Aberdeen</option>
+                      <option value="ABY">Southwest Georgia Regional Airport,Albany</option>
+                      <option value="ACK">Nantucket Memorial Airport,Nantucket</option>
+                      <option value="ACT">Waco Regional Airport,Waco</option>
+                      <option value="ACV">Arcata Airport,Arcata/Eureka</option>
+                      <option value="ACY">Atlantic City International Airport,Atlantic City</option>
+                      <option value="ADK">Adak Airport,Adak</option>
+                      <option value="ADQ">Kodiak Airport,Kodiak</option>
+                      <option value="AEX">Alexandria International Airport,Alexandria</option>
+                      <option value="AGS">Augusta Regional Airport (Bush Field),Augusta</option>
+                      <option value="AKN">King Salmon Airport,King Salmon</option>
+                      <option value="ALB">Albany International Airport,Albany</option>
+                      <option value="ALO">Waterloo Regional Airport,Waterloo</option>
+                      <option value="AMA">Rick Husband Amarillo International Airport,Amarillo</option>
+                      <option value="ANC">Ted Stevens Anchorage International Airport,Anchorage</option>
+                      <option value="APN">Alpena County Regional Airport,Alpena</option>
+                      <option value="ASE">Aspen-Pitkin County Airport,Aspen</option>
+                      <option value="ATL">Hartsfield-Jackson Atlanta International Airport,Atlanta</option>
+                      <option value="ATW">Appleton International Airport,Appleton</option>
+                      <option value="AUS">Austin-Bergstrom International Airport,Austin</option>
+                      <option value="AVL">Asheville Regional Airport,Asheville</option>
+                      <option value="AVP">Wilkes-Barre/Scranton International Airport,Wilkes-Barre/Scranton</option>
+                      <option value="AZO">Kalamazoo/Battle Creek International Airport,Kalamazoo</option>
+                      <option value="BDL">Bradley International Airport,Windsor Locks</option>
+                      <option value="BET">Bethel Airport,Bethel</option>
+                      <option value="BFL">Meadows Field,Bakersfield</option>
+                      <option value="BGM">Greater Binghamton Airport,Binghamton</option>
+                      <option value="BGR">Bangor International Airport,Bangor</option>
+                      <option value="BHM">Birmingham-Shuttlesworth International Airport,Birmingham</option>
+                      <option value="BIL">Billings Logan International Airport,Billings</option>
+                      <option value="BIS">Bismarck Municipal Airport,Bismarck</option>
+                      <option value="BJI">Bemidji Regional Airport,Bemidji</option>
+                      <option value="BLI">Bellingham International Airport,Bellingham</option>
+                      <option value="BMI">Central Illinois Regional Airport at Bloomington-Normal,Bloomington</option>
+                      <option value="BNA">Nashville International Airport,Nashville</option>
+                      <option value="BOI">Boise Airport (Boise Air Terminal),Boise</option>
+                      <option value="BOS">Gen. Edward Lawrence Logan International Airport,Boston</option>
+                      <option value="BPT">Jack Brooks Regional Airport (Southeast Texas Regional),Beaumont/Port Arthur</option>
+                      <option value="BQK">Brunswick Golden Isles Airport,Brunswick</option>
+                      <option value="BQN">Rafael Hernández Airport,Aguadilla</option>
+                      <option value="BRD">Brainerd Lakes Regional Airport,Brainerd</option>
+                      <option value="BRO">Brownsville/South Padre Island International Airport,Brownsville</option>
+                      <option value="BRW">Wiley Post-Will Rogers Memorial Airport,Barrow</option>
+                      <option value="BTM">Bert Mooney Airport,Butte</option>
+                      <option value="BTR">Baton Rouge Metropolitan Airport,Baton Rouge</option>
+                      <option value="BTV">Burlington International Airport,Burlington</option>
+                      <option value="BUF">Buffalo Niagara International Airport,Buffalo</option>
+                      <option value="BUR">Bob Hope Airport (Hollywood Burbank Airport),Burbank</option>
+                      <option value="BWI">Baltimore-Washington International Airport,Baltimore</option>
+                      <option value="BZN">Bozeman Yellowstone International Airport (Gallatin Field Airport),Bozeman</option>
+                      <option value="CAE">Columbia Metropolitan Airport,Columbia</option>
+                      <option value="CAK">Akron-Canton Regional Airport,Akron</option>
+                      <option value="CDC">Cedar City Regional Airport,Cedar City</option>
+                      <option value="CDV">Merle K. (Mudhole) Smith Airport,Cordova</option>
+                      <option value="CEC">Del Norte County Airport (Jack McNamara Field),Crescent City</option>
+                      <option value="CHA">Chattanooga Metropolitan Airport (Lovell Field),Chattanooga</option>
+                      <option value="CHO">Charlottesville-Albemarle Airport,Charlottesville</option>
+                      <option value="CHS">Charleston International Airport/Charleston AFB,Charleston</option>
+                      <option value="CID">The Eastern Iowa Airport,Cedar Rapids</option>
+                      <option value="CIU">Chippewa County International Airport,Sault Ste. Marie</option>
+                      <option value="CLD">McClellan-Palomar Airport,San Diego</option>
+                      <option value="CLE">Cleveland Hopkins International Airport,Cleveland</option>
+                      <option value="CLL">Easterwood Airport,College Station</option>
+                      <option value="CLT">Charlotte Douglas International Airport,Charlotte</option>
+                      <option value="CMH">Port Columbus International Airport,Columbus</option>
+                      <option value="CMI">University of Illinois - Willard Airport,Champaign/Urbana</option>
+                      <option value="CMX">Houghton County Memorial Airport,Hancock</option>
+                      <option value="CNY">Canyonlands Field,Moab</option>
+                      <option value="COD">Yellowstone Regional Airport,Cody</option>
+                      <option value="COS">City of Colorado Springs Municipal Airport,Colorado Springs</option>
+                      <option value="COU">Columbia Regional Airport,Columbia</option>
+                      <option value="CPR">Natrona County International Airport,Casper</option>
+                      <option value="CRP">Corpus Christi International Airport,Corpus Christi</option>
+                      <option value="CRW">Yeager Airport,Charleston</option>
+                      <option value="CSG">Columbus Metropolitan Airport,Columbus</option>
+                      <option value="CVG">Cincinnati/Northern Kentucky International Airport,Covington</option>
+                      <option value="CWA">Central Wisconsin Airport,Mosinee</option>
+                      <option value="DAB">Daytona Beach International Airport,Daytona Beach</option>
+                      <option value="DAL">Dallas Love Field,Dallas</option>
+                      <option value="DAY">James M. Cox Dayton International Airport,Dayton</option>
+                      <option value="DBQ">Dubuque Regional Airport,Dubuque</option>
+                      <option value="DCA">Ronald Reagan Washington National Airport,Arlington</option>
+                      <option value="DEN">Denver International Airport,Denver</option>
+                      <option value="DFW">Dallas/Fort Worth International Airport,Dallas-Fort Worth</option>
+                      <option value="DHN">Dothan Regional Airport,Dothan</option>
+                      <option value="DIK">Dickinson Theodore Roosevelt Regional Airport,Dickinson</option>
+                      <option value="DLG">Dillingham Airport,Dillingham</option>
+                      <option value="DLH">Duluth International Airport,Duluth</option>
+                      <option value="DRO">Durango-La Plata County Airport,Durango</option>
+                      <option value="DSM">Des Moines International Airport,Des Moines</option>
+                      <option value="DTW">Detroit Metropolitan Airport,Detroit</option>
+                      <option value="DVL">Devils Lake Regional Airport,Devils Lake</option>
+                      <option value="EAU">Chippewa Valley Regional Airport,Eau Claire</option>
+                      <option value="ECP">Northwest Florida Beaches International Airport,Panama City</option>
+                      <option value="EGE">Eagle County Regional Airport,Eagle</option>
+                      <option value="EKO">Elko Regional Airport,Elko</option>
+                      <option value="ELM">Elmira/Corning Regional Airport,Elmira</option>
+                      <option value="ELP">El Paso International Airport,El Paso</option>
+                      <option value="ERI">Erie International Airport,Erie</option>
+                      <option value="ESC">Delta County Airport,Escanaba</option>
+                      <option value="EUG">Eugene Airport (Mahlon Sweet Field),Eugene</option>
+                      <option value="EVV">Evansville Regional Airport,Evansville</option>
+                      <option value="EWN">Coastal Carolina Regional Airport (Craven County Regional),New Bern</option>
+                      <option value="EWR">Newark Liberty International Airport,Newark</option>
+                      <option value="EYW">Key West International Airport,Key West</option>
+                      <option value="FAI">Fairbanks International Airport,Fairbanks</option>
+                      <option value="FAR">Hector International Airport,Fargo</option>
+                      <option value="FAT">Fresno Yosemite International Airport,Fresno</option>
+                      <option value="FAY">Fayetteville Regional Airport,Fayetteville</option>
+                      <option value="FCA">Glacier Park International Airport,Kalispell</option>
+                      <option value="FLG">Flagstaff Pulliam Airport,Flagstaff</option>
+                      <option value="FLL">Fort Lauderdale-Hollywood International Airport,Ft. Lauderdale</option>
+                      <option value="FNT">Bishop International Airport,Flint</option>
+                      <option value="FSD">Sioux Falls Regional Airport,Sioux Falls</option>
+                      <option value="FSM">Fort Smith Regional Airport,Fort Smith</option>
+                      <option value="FWA">Fort Wayne International Airport,Fort Wayne</option>
+                      <option value="GCC">Gillette-Campbell County Airport,Gillette</option>
+                      <option value="GCK">Garden City Regional Airport,Garden City</option>
+                      <option value="GEG">Spokane International Airport,Spokane</option>
+                      <option value="GFK">Grand Forks International Airport,Grand Forks</option>
+                      <option value="GGG">East Texas Regional Airport,Longview</option>
+                      <option value="GJT">Grand Junction Regional Airport (Walker Field),Grand Junction</option>
+                      <option value="GNV">Gainesville Regional Airport,Gainesville</option>
+                      <option value="GPT">Gulfport-Biloxi International Airport,Gulfport-Biloxi</option>
+                      <option value="GRB">Green Bay-Austin Straubel International Airport,Green Bay</option>
+                      <option value="GRI">Central Nebraska Regional Airport,Grand Island</option>
+                      <option value="GRK">Killeen-Fort Hood Regional Airport,Killeen</option>
+                      <option value="GRR">Gerald R. Ford International Airport,Grand Rapids</option>
+                      <option value="GSO">Piedmont Triad International Airport,Greensboro</option>
+                      <option value="GSP">Greenville-Spartanburg International Airport,Greer</option>
+                      <option value="GST">Gustavus Airport,Gustavus</option>
+                      <option value="GTF">Great Falls International Airport,Great Falls</option>
+                      <option value="GTR">Golden Triangle Regional Airport,Columbus-Starkville-West Point</option>
+                      <option value="GUC">Gunnison-Crested Butte Regional Airport,Gunnison</option>
+                      <option value="GUM">Guam International Airport,Agana</option>
+                      <option value="HDN">Yampa Valley Airport (Yampa Valley Regional),Hayden</option>
+                      <option value="HIB">Range Regional Airport (Chisholm-Hibbing Airport),Hibbing</option>
+                      <option value="HLN">Helena Regional Airport,Helena</option>
+                      <option value="HNL">Honolulu International Airport,Honolulu</option>
+                      <option value="HOB">Lea County Regional Airport,Hobbs</option>
+                      <option value="HOU">William P. Hobby Airport,Houston</option>
+                      <option value="HPN">Westchester County Airport,White Plains</option>
+                      <option value="HRL">Valley International Airport,Harlingen</option>
+                      <option value="HSV">Huntsville International Airport,Huntsville</option>
+                      <option value="HYA">Barnstable Municipal Airport,Hyannis</option>
+                      <option value="HYS">Hays Regional Airport,Hays</option>
+                      <option value="IAD">Washington Dulles International Airport,Chantilly</option>
+                      <option value="IAG">Niagara Falls International Airport,Niagara Falls</option>
+                      <option value="IAH">George Bush Intercontinental Airport,Houston</option>
+                      <option value="ICT">Wichita Dwight D. Eisenhower National Airport (Wichita Mid-Continent Airport),Wichita</option>
+                      <option value="IDA">Idaho Falls Regional Airport,Idaho Falls</option>
+                      <option value="ILG">Wilmington Airport,Wilmington</option>
+                      <option value="ILM">Wilmington International Airport,Wilmington</option>
+                      <option value="IMT">Ford Airport,Iron Mountain/Kingsford</option>
+                      <option value="IND">Indianapolis International Airport,Indianapolis</option>
+                      <option value="INL">Falls International Airport,International Falls</option>
+                      <option value="ISN">Sloulin Field International Airport,Williston</option>
+                      <option value="ISP">Long Island MacArthur Airport,Islip</option>
+                      <option value="ITH">Ithaca Tompkins Regional Airport,Ithaca</option>
+                      <option value="ITO">Hilo International Airport,Hilo</option>
+                      <option value="JAC">Jackson Hole Airport,Jackson</option>
+                      <option value="JAN">Jackson-Evers International Airport,Jackson</option>
+                      <option value="JAX">Jacksonville International Airport,Jacksonville</option>
+                      <option value="JFK">John F. Kennedy International Airport (New York International Airport),New York</option>
+                      <option value="JLN">Joplin Regional Airport,Joplin</option>
+                      <option value="JMS">Jamestown Regional Airport,Jamestown</option>
+                      <option value="JNU">Juneau International Airport,Juneau</option>
+                      <option value="KOA">Kona International Airport at Keahole,Kailua/Kona</option>
+                      <option value="KTN">Ketchikan International Airport,Ketchikan</option>
+                      <option value="LAN">Capital Region International Airport ( Lansing Capital City),Lansing</option>
+                      <option value="LAR">Laramie Regional Airport,Laramie</option>
+                      <option value="LAS">McCarran International Airport,Las Vegas</option>
+                      <option value="LAW">Lawton-Fort Sill Regional Airport,Lawton</option>
+                      <option value="LAX">Los Angeles International Airport,Los Angeles</option>
+                      <option value="LBB">Lubbock Preston Smith International Airport,Lubbock</option>
+                      <option value="LBE">Arnold Palmer Regional Airport,Latrobe</option>
+                      <option value="LCH">Lake Charles Regional Airport,Lake Charles</option>
+                      <option value="LEX">Blue Grass Airport,Lexington</option>
+                      <option value="LFT">Lafayette Regional Airport,Lafayette</option>
+                      <option value="LGA">LaGuardia Airport (Marine Air Terminal),New York</option>
+                      <option value="LGB">Long Beach Airport (Daugherty Field),Long Beach</option>
+                      <option value="LIH">Lihue Airport,Lihue</option>
+                      <option value="LIT">Bill and Hillary Clinton National Airport (Adams Field),Little Rock</option>
+                      <option value="LNK">Lincoln Airport (Lincoln Municipal),Lincoln</option>
+                      <option value="LRD">Laredo International Airport,Laredo</option>
+                      <option value="LSE">La Crosse Regional Airport,La Crosse</option>
+                      <option value="LWS">Lewiston-Nez Perce County Airport,Lewiston</option>
+                      <option value="MAF">Midland International Airport,Midland</option>
+                      <option value="MBS">MBS International Airport,Saginaw</option>
+                      <option value="MCI">Kansas City International Airport,Kansas City</option>
+                      <option value="MCO">Orlando International Airport,Orlando</option>
+                      <option value="MDT">Harrisburg International Airport,Harrisburg</option>
+                      <option value="MDW">Chicago Midway International Airport,Chicago</option>
+                      <option value="MEI">Meridian Regional Airport,Meridian</option>
+                      <option value="MEM">Memphis International Airport,Memphis</option>
+                      <option value="MFE">McAllen-Miller International Airport (McAllen Miller International),McAllen</option>
+                      <option value="MFR">Rogue Valley International Airport,Medford</option>
+                      <option value="MGM">Montgomery Regional Airport,Montgomery</option>
+                      <option value="MHK">Manhattan Regional Airport,Manhattan</option>
+                      <option value="MHT">Manchester-Boston Regional Airport,Manchester</option>
+                      <option value="MIA">Miami International Airport,Miami</option>
+                      <option value="MKE">General Mitchell International Airport,Milwaukee</option>
+                      <option value="MKG">Muskegon County Airport,Muskegon</option>
+                      <option value="MLB">Melbourne International Airport,Melbourne</option>
+                      <option value="MLI">Quad City International Airport,Moline</option>
+                      <option value="MLU">Monroe Regional Airport,Monroe</option>
+                      <option value="MMH">Mammoth Yosemite Airport,Mammoth Lakes</option>
+                      <option value="MOB">Mobile Regional Airport,Mobile</option>
+                      <option value="MOT">Minot International Airport,Minot</option>
+                      <option value="MQT">Sawyer International Airport,Marquette</option>
+                      <option value="MRY">Monterey Regional Airport (Monterey Peninsula Airport),Monterey</option>
+                      <option value="MSN">Dane County Regional Airport,Madison</option>
+                      <option value="MSO">Missoula International Airport,Missoula</option>
+                      <option value="MSP">Minneapolis-Saint Paul International Airport,Minneapolis</option>
+                      <option value="MSY">Louis Armstrong New Orleans International Airport,New Orleans</option>
+                      <option value="MTJ">Montrose Regional Airport,Montrose</option>
+                      <option value="MVY">Martha's Vineyard Airport,Marthas Vineyard</option>
+                      <option value="MYR">Myrtle Beach International Airport,Myrtle Beach</option>
+                      <option value="OAJ">Albert J. Ellis Airport,Jacksonville</option>
+                      <option value="OAK">Oakland International Airport,Oakland</option>
+                      <option value="OGG">Kahului Airport,Kahului</option>
+                      <option value="OKC">Will Rogers World Airport,Oklahoma City</option>
+                      <option value="OMA">Eppley Airfield,Omaha</option>
+                      <option value="OME">Nome Airport,Nome</option>
+                      <option value="ONT">Ontario International Airport,Ontario</option>
+                      <option value="ORD">Chicago O'Hare International Airport,Chicago</option>
+                      <option value="ORF">Norfolk International Airport,Norfolk</option>
+                      <option value="ORH">Worcester Regional Airport,Worcester</option>
+                      <option value="OTH">Southwest Oregon Regional Airport (North Bend Municipal),North Bend</option>
+                      <option value="OTZ">Ralph Wien Memorial Airport,Kotzebue</option>
+                      <option value="PAH">Barkley Regional Airport,Paducah</option>
+                      <option value="PBG">Plattsburgh International Airport,Plattsburgh</option>
+                      <option value="PBI">Palm Beach International Airport,West Palm Beach</option>
+                      <option value="PDX">Portland International Airport,Portland</option>
+                      <option value="PHF">Newport News/Williamsburg International Airport,Newport News</option>
+                      <option value="PHL">Philadelphia International Airport,Philadelphia</option>
+                      <option value="PHX">Phoenix Sky Harbor International Airport,Phoenix</option>
+                      <option value="PIA">General Wayne A. Downing Peoria International Airport,Peoria</option>
+                      <option value="PIB">Hattiesburg-Laurel Regional Airport,Hattiesburg-Laurel</option>
+                      <option value="PIH">Pocatello Regional Airport,Pocatello</option>
+                      <option value="PIT">Pittsburgh International Airport,Pittsburgh</option>
+                      <option value="PLN">Pellston Regional Airport of Emmet County,Pellston</option>
+                      <option value="PNS">Pensacola International Airport (Pensacola Gulf Coast Regional Airport),Pensacola</option>
+                      <option value="PPG">Pago Pago International Airport (Tafuna Airport),Pago Pago</option>
+                      <option value="PSC">Tri-Cities Airport,Pasco</option>
+                      <option value="PSE">Mercedita Airport,Ponce</option>
+                      <option value="PSG">Petersburg James A. Johnson Airport,Petersburg</option>
+                      <option value="PSP">Palm Springs International Airport,Palm Springs</option>
+                      <option value="PUB">Pueblo Memorial Airport,Pueblo</option>
+                      <option value="PVD">Theodore Francis Green State Airport,Providence</option>
+                      <option value="PWM">Portland International Jetport,Portland</option>
+                      <option value="RAP">Rapid City Regional Airport,Rapid City</option>
+                      <option value="RDD">Redding Municipal Airport,Redding</option>
+                      <option value="RDM">Redmond Municipal Airport (Roberts Field),Redmond</option>
+                      <option value="RDU">Raleigh-Durham International Airport,Raleigh</option>
+                      <option value="RHI">Rhinelander-Oneida County Airport,Rhinelander</option>
+                      <option value="RIC">Richmond International Airport,Richmond</option>
+                      <option value="RKS">Rock Springs-Sweetwater County Airport,Rock Springs</option>
+                      <option value="RNO">Reno/Tahoe International Airport,Reno</option>
+                      <option value="ROA">Roanoke Regional Airport (Woodrum Field),Roanoke</option>
+                      <option value="ROC">Greater Rochester International Airport,Rochester</option>
+                      <option value="ROW">Roswell International Air Center,Roswell</option>
+                      <option value="RST">Rochester International Airport,Rochester</option>
+                      <option value="RSW">Southwest Florida International Airport,Ft. Myers</option>
+                      <option value="SAF">Santa Fe Municipal Airport,Santa Fe</option>
+                      <option value="SAN">San Diego International Airport (Lindbergh Field),San Diego</option>
+                      <option value="SAT">San Antonio International Airport,San Antonio</option>
+                      <option value="SAV">Savannah/Hilton Head International Airport,Savannah</option>
+                      <option value="SBA">Santa Barbara Municipal Airport (Santa Barbara Airport),Santa Barbara</option>
+                      <option value="SBN">South Bend International Airport (South Bend Regional),South Bend</option>
+                      <option value="SBP">San Luis Obispo County Regional Airport (McChesney Field),San Luis Obispo</option>
+                      <option value="SCC">Deadhorse Airport (Prudhoe Bay Airport),Deadhorse</option>
+                      <option value="SCE">University Park Airport,State College</option>
+                      <option value="SDF">Louisville International Airport (Standiford Field),Louisville</option>
+                      <option value="SEA">Seattle-Tacoma International Airport,Seattle</option>
+                      <option value="SFO">San Francisco International Airport,San Francisco</option>
+                      <option value="SGF">Springfield-Branson National Airport,Springfield</option>
+                      <option value="SGU">St. George Regional Airport,St George</option>
+                      <option value="SHV">Shreveport Regional Airport,Shreveport</option>
+                      <option value="SIT">Sitka Rocky Gutierrez Airport,Sitka</option>
+                      <option value="SJC">Norman Y. Mineta San José International Airport,San Jose</option>
+                      <option value="SJT">San Angelo Regional Airport (Mathis Field),San Angelo</option>
+                      <option value="SJU">Luis Muñoz Marín International Airport,San Juan</option>
+                      <option value="SLC">Salt Lake City International Airport,Salt Lake City</option>
+                      <option value="SMF">Sacramento International Airport,Sacramento</option>
+                      <option value="SMX">Santa Maria Public Airport (Capt G. Allan Hancock Field),Santa Maria</option>
+                      <option value="SNA">John Wayne Airport (Orange County Airport),Santa Ana</option>
+                      <option value="SPI">Abraham Lincoln Capital Airport,Springfield</option>
+                      <option value="SPS">Wichita Falls Municipal Airport/Sheppard AFB,Wichita Falls</option>
+                      <option value="SRQ">Sarasota-Bradenton International Airport,Sarasota</option>
+                      <option value="STC">St. Cloud Regional Airport,St Cloud</option>
+                      <option value="STL">St. Louis International Airport at Lambert Field,St Louis</option>
+                      <option value="STT">Cyril E. King Airport,Charlotte Amalie</option>
+                      <option value="STX">Henry E. Rohlsen Airport,Christiansted</option>
+                      <option value="SUN">Friedman Memorial Airport,Hailey</option>
+                      <option value="SUX">Sioux Gateway Airport,Sioux City</option>
+                      <option value="SWF">Stewart International Airport,Newburgh</option>
+                      <option value="SYR">Syracuse Hancock International Airport,Syracuse</option>
+                      <option value="TLH">Tallahassee International Airport,Tallahassee</option>
+                      <option value="TOL">Toledo Express Airport,Toledo</option>
+                      <option value="TPA">Tampa International Airport,Tampa</option>
+                      <option value="TRI">Tri-Cities Regional Airport,Bristol</option>
+                      <option value="TTN">Trenton Mercer Airport,Trenton</option>
+                      <option value="TUL">Tulsa International Airport,Tulsa</option>
+                      <option value="TUS">Tucson International Airport,Tucson</option>
+                      <option value="TVC">Cherry Capital Airport,Traverse City</option>
+                      <option value="TWF">Magic Valley Regional Airport (Joslin Field),Twin Falls</option>
+                      <option value="TXK">Texarkana Regional Airport (Webb Field),Texarkana</option>
+                      <option value="TYR">Tyler Pounds Regional Airport,Tyler</option>
+                      <option value="TYS">McGhee Tyson Airport,Knoxville</option>
+                      <option value="UST">Northeast Florida Regional Airport (St. Augustine Airport),St. Augustine</option>
+                      <option value="VEL">Valdez Airport,Vernal</option>
+                      <option value="VLD">Valdosta Regional Airport,Valdosta</option>
+                      <option value="VPS">Destin-Fort Walton Beach Airport/Eglin AFB,Valparaiso</option>
+                      <option value="WRG">Wrangell Airport,Wrangell</option>
+                      <option value="WYS">Westerly State Airport,West Yellowstone</option>
+                      <option value="XNA">Northwest Arkansas Regional Airport,Fayetteville/Springdale/Rogers</option>
+                      <option value="YAK">Yakutat Airport,Yakutat</option>
+                      <option value="YUM">Yuma International Airport,Yuma</option>
+                  </select>
+                </div>
+               </div>
+           <h4 style="margin-left: 29%;">Weather in Departure City</h4>
+
+           <select id="getDepart-Weather" class="custom-select form-control-sm">
+             <option>--Choose an Option--</option>
+             <option value="1">Broken Clouds</option>
+             <option value="2">Scattered Clouds</option>
+            <option value="3">Sky is Clear</option>
+            <option value="4">Few clouds</option>
+          </select>
+
+          <h4 style="margin-left: 29%;">Weather in Arrival City</h4>
+
+           <select id="getArrive-Weather" class="custom-select form-control-sm">
+             <option>--Choose an Option--</option>
+             <option value="1">Broken Clouds</option>
+             <option value="2">Scattered Clouds</option>
+            <option value="3">Sky is Clear</option>
+            <option value="4">Few clouds</option>
+          </select>
+
+         </div>
+
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <!-- <button type="button" class="btn btn-danger btn-lg">Predict Flights</button> -->
+               <div class="hero-button text-center">
+                 <a href="#" class="btn btn-large btn-danger" id="generate-flight">
+                   <i class="icon-apple icon-3x pull-left"></i>
+                    <span style="font-weight: bold;">Predict Flights</span>
+                 </a>
+               </div>
+            </div>
+          </div>
+          <table class="table" id="myFlight">
+    
+            <tr>
+          
+              <th style="text-align: center;">Cancelation Chance</th>
+               
+                  
+              <th style="text-align: center;">Delay Chance</th>
+               
+               
+                 </tr>
+               
+             
+             </table>
+          </div>
+<!-- Best Airports -->
+    <div id="ba" class="tab-pane fade">
+      <span class="contact2-form-title ">
+       Best Airport
+      </span>
+      <p style="margin-left: 20%;">Predict Best Airports available for the Date</p>
+     <div class="form-group row text-center">
+     <div style="align-content: center;" class="col-sm-10 text-center">
+       <label  for="end">For date:</label>
+       <input type="date"  id="checkDate" name="trip-start"
+            value="2018-07-22"
+             min="2015-01-01" max="2015-12-31">
+     </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+           <div class="hero-button text-center">
+             <a style="margin-left: 100%;" href="#" class="btn btn-large btn-danger" id="generate-ports">
+               <i class="icon-apple icon-3x pull-left"></i>
+                <span style="font-weight: bold">Generate Best Airports</span>
+             </a>
+           </div>
+        </div>
+      </div>
+     </div>
+     <table class="table" id="mytable">
+        <tr>
+        <th>Origin</th>
+        <th>Origin Port</th>    
+        <th>Reliablity</th> 
+        </tr>
+      </table>
+    </div>
+    <!-- End Best Airport -->
+    <!-- Flight Graph -->
+    <div id="fg" class="tab-pane fade">
+      <span class="contact2-form-title">
+       Flight Graph
+      </span>
+      <p style="text-align: center;">Generate the flight graphs</p>
+     <div class="form-group row">
+       <div class="col-sm-10 text-center">
+         <p>  
+        <select name="graphDate" style="margin-left: 25%;" id="getCondition" class="custom-select form-control-sm">
+          <option value="0">--Choose an Option--</option>
+          <option value="Weather">Weather</option>
+          <option value="Cancellations">Cancellations</option>
+        </select>
+        </p>
+        <p style="margin-left: 25%;"><input type="date" id="getDate" name="trip-start"
+          value="2018-07-22"></p>
+          <div class="hero-button text-center" >
+            <p style="margin-left: 25%;"><a href="#" class="btn btn-large btn-danger" id="generate-graph">
+              <i class="icon-apple icon-3x pull-left"></i>
+               <span style="font-weight: bold;">Generate Graphs </span>
+            </a>
+          </p>
+          
+          </div>
+       </div>
+     </div>
+    </div>
+    <!-- End of Flight Graph -->
+        </div>
+        </div>
+        </div>
+       </div>
+  </div>
+</div>
+
+<footer class="footer">
+  
+    <a href="ContactUs.html">Contact Us</a>
+    <a style="margin-left: 30%;" href="index.html">Logout</a>
+  
+
+</footer>
+<script src="js/post.js"></script>
+</body>
+</html>

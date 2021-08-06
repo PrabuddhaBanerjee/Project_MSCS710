@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  frontend:
+    image: frontend
+    build: ./Login_v1
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/code
+    links:
+      - swagger_server
+
+  swagger_server:
+    build: .
+    image: swagger_server
+    ports:
+      - 8080:8080
